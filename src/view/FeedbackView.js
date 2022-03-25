@@ -2,17 +2,17 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
-import Container from '../components/surface/Container'
 import Heading1 from '../components/typography/Heading1'
 import { color } from '../constants/color'
 import { space } from '../constants/space'
 import { text } from '../constants/text'
 
 const Wrapper = styled.div`
-    width: ${space.width};
+    width: ${space.wideWidth};
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 60px;
+    margin: 100px auto;
 `
 const Answer = styled.div`
     display: flex;
@@ -21,13 +21,13 @@ const Answer = styled.div`
 `
 const Title = styled.p`
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.5;
     color: ${color.gray[9]};
     white-space: pre-line;
 `
 const Paragraph = styled.p`
-    font-size: 16px;
+    font-size: 20px;
     color: ${color.gray[9]};
     line-height: 1.5;
 `
@@ -43,7 +43,6 @@ export default function FeedbackView() {
         })
     }, [searchParams])
     return (
-        <Container>
             <Wrapper>
                 {!isLoading &&
                     <>
@@ -57,6 +56,5 @@ export default function FeedbackView() {
                     </>
                 }
             </Wrapper>
-        </Container>
     )
 }
