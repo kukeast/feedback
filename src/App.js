@@ -1,8 +1,19 @@
-import Moyo1Month from "./feedbacks/Moyo1Month";
+import { Route, Routes } from "react-router-dom";
+import { feedbacks } from "./constants/feedbacks";
+import FeedbackView from "./view/FeedbackView";
+import Main from "./view/Main";
 
 function App() {
     return (
-        <Moyo1Month/>
+        <>
+            <Routes>
+                <Route path={'/'} element={<Main/>}/>
+                <Route path={'/view'} element={<FeedbackView/>}/>
+                {feedbacks.map(route => (
+                    <Route key={route.path} path={route.path} element={route.component}/>
+                ))}
+            </Routes>
+        </>
     );
 }
   
