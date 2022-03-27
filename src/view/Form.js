@@ -21,8 +21,8 @@ const TitleWrapper = styled.div`
     gap: 8px;
 `
 
-export default function Form({ data }) {
-    const { type, title, name, placeholder, discription, required, callback, defaultValue, options, onClickNext, onClickPrevious } = data
+export default function Form({ data, defaultValue, callback, onClickNext, onClickPrevious, isLoading }) {
+    const { type, title, name, placeholder, discription, required, options} = data
     const [isPass, setIsPass] = useState(false)
     const handleCallback = (name, value, check) => {
         setIsPass(check)
@@ -81,7 +81,7 @@ export default function Form({ data }) {
                     defaultValue={defaultValue}
                 />
             }
-            {type === 'end' && 
+            {type === 'email' && 
                 <TextField
                     placeholder={placeholder}
                     name={name}
@@ -97,6 +97,7 @@ export default function Form({ data }) {
                 isPass={isPass}
                 onClickNext={onClickNext}
                 onClickPrevious={onClickPrevious}
+                isLoading={isLoading}
             />
         </Wrapper>
     )

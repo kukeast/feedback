@@ -10,11 +10,11 @@ const Wrapper = styled.div`
     gap: 16px;
 `
 
-export default function Footer({ type, isPass, onClickNext, onClickPrevious }) {
+export default function Footer({ type, isPass, onClickNext, onClickPrevious, isLoading }) {
     return (
         <Wrapper>
-            {onClickPrevious && <Button type='secondary' onClick={onClickPrevious}>이전</Button>}
-            <Button onClick={onClickNext} disabled={!isPass}>{type === 'end' ? '보내기' : type === 'done' ? '돌아가기' : '다음'}</Button>
+            {(type !== 'start' && type !== 'end') && <Button type='secondary' onClick={onClickPrevious}>이전</Button>}
+            <Button onClick={onClickNext} disabled={!isPass} isLoading={isLoading}>{type === 'email' ? '보내기' : type === 'end' ? '돌아가기' : '다음'}</Button>
         </Wrapper>
     )
 }

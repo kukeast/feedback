@@ -2,16 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import { css } from 'styled-components'
 import { color } from '../../constants/color'
+import Loading from '../surface/Loading'
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    padding: 16px 18px;
+    align-items: center;
+    padding: 0 18px;
     font-size: 16px;
     line-height: 1;
     font-weight: 600;
     border-radius: 8px;
-    min-width: 40px;
+    min-width: 60px;
+    height: 48px;
     cursor: pointer;
     
     ${props => props.type === 'secondary' ?
@@ -47,12 +50,15 @@ const Wrapper = styled.div`
         }
         cursor: not-allowed;
     ` }
+    ${props => props.isLoading && css`
+        cursor: progress;
+    ` }
 `
 
-export default function Button({ children, onClick, type, disabled }) {
+export default function Button({ children, onClick, type, disabled, isLoading }) {
     return (
-        <Wrapper onClick={!disabled ? onClick : undefined} type={type} disabled={disabled}>
-            {children}
+        <Wrapper onClick={(!disabled && !isLoading) ? onClick : undefined} type={type} disabled={disabled} isLoading={isLoading}>
+            {isLoading ? <Loading/> : children}
         </Wrapper>
     )
 }

@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     gap: 24px;
 `
 const Label = styled.p`
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: ${color.gray[7]};
 `
@@ -38,11 +38,11 @@ const TitleWrapper = styled.div`
     gap: 4px;
 `
 const Title = styled.p`
-    font-size: 16px;
+    font-size: 18px;
     color: ${color.gray[9]};
 `
 const DateRange = styled.p`
-    font-size: 14px;
+    font-size: 16px;
     color: ${color.gray[6]};
 `
 const LinkButton = styled(Link)`
