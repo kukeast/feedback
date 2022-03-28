@@ -47,36 +47,27 @@ const Paragraph = styled.p`
     background-color: ${color.gray[1]};
     margin-top: 12px;
     line-height: 1.5;
+    white-space: pre;
 `
 export default function FeedbackView() {
     const [searchParams] = useSearchParams()
-    const [params, setParams] = useState({
-        id: searchParams.get('id'),
-        code: searchParams.get('code')
-    })
     const [isLoading, setLoading] = useState(true)
     const [data, setData] = useState({})
-    useEffect(() => {
-        setParams({
-            id: searchParams.get('id'),
-            code: searchParams.get('code')
-        })
-    }, [searchParams])
 
     useEffect(() => {
-        axios.get(`https://sheet.best/api/sheets/4ba77550-e25c-431b-a213-46ce0788a961/tabs/${params.id}/query?code=${params.code}`)
+        axios.get(`https://sheet.best/api/sheets/4ba77550-e25c-431b-a213-46ce0788a961/tabs/${searchParams.get('id')}/query?code=${searchParams.get('code')}`)
         .then(res => {
             setData(res.data[0])
             setLoading(false)
         })
-    }, [params])
+    }, [searchParams])
 
     return (
             <Wrapper>
                 {!isLoading &&
                     <>
                         <Heading1>{data.name}님의 피드백</Heading1>
-                        {feedbacks.filter(i => i.id === parseInt(params.id))[0].contents.map( q => (
+                        {feedbacks.filter(i => i.id === parseInt(searchParams.get('id')))[0].contents.map( q => (
                             q.name && <Answer key={q.title}>
                                 <Title>{q.title}{q.required && <span>*</span>}</Title>
                                 {q.discription && <Description>{q.discription}</Description>}
