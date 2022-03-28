@@ -64,7 +64,7 @@ export default function FeedbackView() {
     }, [searchParams])
 
     useEffect(() => {
-        axios.get(`https://sheet.best/api/sheets/85bb335f-f290-49c4-ad1f-6004385e40ad/tabs/${params.id}/query?code=${params.code}`)
+        axios.get(`https://sheet.best/api/sheets/4ba77550-e25c-431b-a213-46ce0788a961/tabs/${params.id}/query?code=${params.code}`)
         .then(res => {
             setData(res.data[0])
             setLoading(false)
