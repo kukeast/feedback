@@ -4,8 +4,8 @@ export const feedbacks = [
     {
         id: 1,
         title: '모요 3월 피드백',
-        startDate: '2022.4.1',
-        endDate: '2022.4.15',
+        startDate: '2022.3.28',
+        endDate: '2022.4.11',
         path: '/moyo1month',
         contents: [
             {
