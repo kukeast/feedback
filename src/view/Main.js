@@ -27,7 +27,6 @@ const Feedbacks = styled.div`
 const Feedback = styled.div`
     display: flex;
     padding: 24px 0;
-    /* border-top: 1px solid ${color.gray[2]}; */
     width: 100%;
     align-items: center;
     justify-content: space-between;
