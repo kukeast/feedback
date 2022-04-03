@@ -64,6 +64,9 @@ const Paragraph = styled.p`
     margin-top: 12px;
     line-height: 1.5;
     white-space: pre;
+    @media (max-width: 480px) {
+        font-size: 15px;
+    }
 `
 export default function FeedbackView() {
     const [searchParams] = useSearchParams()

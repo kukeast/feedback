@@ -26,7 +26,7 @@ export const feedbacks = [
                 type: 'long',
                 required: true,
                 name: 'role',
-                title: '이동국에게 기대하는 디자이너로서의 역할은 무엇인가요?',
+                title: '이동국에게 디자이너로서 기대하는 역할은 무엇인가요?',
                 placeholder: '자유롭게 적어주세요.',
             },
             {

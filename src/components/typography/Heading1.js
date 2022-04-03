@@ -16,9 +16,10 @@ const H1 = styled.p`
         margin-left: 4px;
     }
     @media (max-width: 480px) {
-        font-size: 28px;
+        font-size: 24px;
         > span{
-            font-size: 28px;
+            font-size: 24px;
+            margin-left: 2px;
         }
     }
 `
