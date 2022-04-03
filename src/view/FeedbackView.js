@@ -8,11 +8,18 @@ import { feedbacks } from '../constants/feedbacks'
 import { space } from '../constants/space'
 
 const Wrapper = styled.div`
-    width: ${space.wideWidth};
+    width: 100%;
+    max-width: ${space.wideWidth};
+    padding: 0 20px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 80px;
     margin: 100px auto;
+    @media (max-width: 480px) {
+        margin: 60px auto;
+        gap: 60px;
+    }
 `
 const Answer = styled.div`
     display: flex;
@@ -32,12 +39,21 @@ const Title = styled.p`
         color: ${color.red[7]};
         margin-left: 2px;
     }
+    @media (max-width: 480px) {
+        font-size: 18px;
+        > span{
+            font-size: 18px;
+        }
+    }
 `
 const Description = styled.p`
     font-size: 18px;
     line-height: 1.5;
     color: ${color.gray[7]};
     white-space: pre-line;
+    @media (max-width: 480px) {
+        font-size: 16px;
+    }
 `
 const Paragraph = styled.p`
     padding: 16px;

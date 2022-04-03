@@ -15,6 +15,12 @@ const H1 = styled.p`
         color: ${color.red[7]};
         margin-left: 4px;
     }
+    @media (max-width: 480px) {
+        font-size: 28px;
+        > span{
+            font-size: 28px;
+        }
+    }
 `
 export default function Heading1({ children, required }) {
     return (

@@ -10,6 +10,10 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 40px;
+    @media (max-width: 480px) {
+        padding: 60px 0;
+        height: initial;
+    }
 `
 
 export default function Container({ children }) {

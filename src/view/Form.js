@@ -12,7 +12,10 @@ const Wrapper = styled.div`
     display: inline-flex;
     flex-direction: column;
     align-items: start;
-    width: ${space.width};
+    width: 100%;
+    max-width: ${space.width};
+    padding: 0 20px;
+    box-sizing: border-box;
     gap: 24px;
 `
 const TitleWrapper = styled.div`
