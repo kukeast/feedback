@@ -5,7 +5,7 @@ import { space } from '../constants/space'
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: 100%;
     max-width: ${space.width};
     gap: 16px;
