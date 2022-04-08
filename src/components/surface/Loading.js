@@ -1,13 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
+import { css } from 'styled-components'
+import { color } from '../../constants/color'
 
 const Wrapper = styled.div`
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255,255,255,.3);
+    width: ${props => props.size === 'm' ? '20px' : '16px'};
+    height: ${props => props.size === 'm' ? '20px' : '16px'};
+    ${props => props.color === 'white' ? 
+        css`
+            border: 2px solid ${color.gray[7]};
+            border-top-color: ${color.white};
+        ` :
+        css`
+            border: 2px solid ${props => color[props.color][1]};
+            border-top-color: ${props => color[props.color][6]};
+        `
+    }
     border-radius: 50%;
-    border-top-color: #fff;
     animation: spin 1s infinite;
     -webkit-animation: spin 1s infinite;
 
@@ -19,8 +29,8 @@ const Wrapper = styled.div`
     }
 `
 
-export default function Loading() {
+export default function Loading({ color = 'white' , size = 'm' }) {
     return (
-        <Wrapper/>
+        <Wrapper color={color} size={size}/>
     )
 }
