@@ -27,7 +27,17 @@ const Wrapper = styled.div`
             &:active{
                 background-color: ${color.gray[2]};
             }
-        ` :
+        ` : props.type === 'danger' ?
+        css`
+            background-color: ${color.white};
+            color: ${color.red[6]};
+            &:hover{
+                background-color: ${color.red[1]};
+            }
+            &:active{
+                background-color: ${color.red[2]};
+            }
+        ` : 
         css`
             background-color: ${color.gray[9]};
             color: ${color.white};
@@ -37,7 +47,7 @@ const Wrapper = styled.div`
             &:active{
                 background-color: ${color.gray[9]};
             }
-        `
+        ` 
     }
 
     ${props => props.disabled && css`
@@ -58,7 +68,7 @@ const Wrapper = styled.div`
 export default function Button({ children, onClick, type, disabled, isLoading }) {
     return (
         <Wrapper onClick={(!disabled && !isLoading) ? onClick : undefined} type={type} disabled={disabled} isLoading={isLoading}>
-            {isLoading ? <Loading/> : children}
+            {isLoading ? <Loading color='white'/> : children}
         </Wrapper>
     )
 }
