@@ -63,7 +63,7 @@ const Paragraph = styled.p`
     background-color: ${color.gray[1]};
     margin-top: 12px;
     line-height: 1.5;
-    white-space: pre;
+    white-space: pre-line;
     @media (max-width: 480px) {
         font-size: 15px;
     }
