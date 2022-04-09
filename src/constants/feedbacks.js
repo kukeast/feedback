@@ -9,6 +9,7 @@ export const feedbacks = [
         path: '/moyo1month',
         contents: [
             {
+                id: 1,
                 type: 'start',
                 title: '안녕하세요.',
                 discription: `개인 성장을 위해 피드백을 요청드립니다.
@@ -17,12 +18,14 @@ export const feedbacks = [
                 되도록 강한 칭찬과 강한 비판을 부탁드립니다!`,
             },
             {
+                id: 2,
                 type: 'short',
                 required: true,
                 name: 'name',
                 title: '이름을 알려주세요.',
             },
             {
+                id: 3,
                 type: 'long',
                 required: true,
                 name: 'role',
@@ -30,6 +33,7 @@ export const feedbacks = [
                 placeholder: '자유롭게 적어주세요.',
             },
             {
+                id: 4,
                 type: 'choice',
                 required: true,
                 name: 'role_score',
@@ -37,6 +41,7 @@ export const feedbacks = [
                 options: text.fiveLevel,
             },
             {
+                id: 5,
                 type: 'long',
                 required: true,
                 name: 'keep',
@@ -45,6 +50,7 @@ export const feedbacks = [
                 placeholder: '자유롭게 적어주세요.',
             },
             {
+                id: 6,
                 type: 'long',
                 required: true,
                 name: 'problem',
@@ -53,6 +59,7 @@ export const feedbacks = [
                 placeholder: '자유롭게 적어주세요.',
             },
             {
+                id: 7,
                 type: 'long',
                 required: true,
                 name: 'try',
@@ -61,6 +68,7 @@ export const feedbacks = [
                 placeholder: '자유롭게 적어주세요.',
             },
             {
+                id: 8,
                 type: 'choice',
                 name: 'feedback_score',
                 title: '피드백에 대한 피드백이에요.',
@@ -68,12 +76,14 @@ export const feedbacks = [
                 options: text.score,
             },
             {
+                id: 9,
                 type: 'long',
                 name: 'feedback_score_reason',
                 title: '위 점수의 이유를 알려주세요.',
                 placeholder: '자유롭게 적어주세요.',
             },
             {
+                id: 10,
                 type: 'email',
                 required: true,
                 name: 'email',
@@ -82,6 +92,7 @@ export const feedbacks = [
                 placeholder: '이메일',
             },
             {
+                id: 11,
                 type: 'end',
                 title: '감사합니다.',
                 discription: '빠른 시일 안에 피드백에 대한 답변을 드릴게요.',

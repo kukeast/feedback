@@ -13,23 +13,82 @@ import Modal from '../components/surface/Modal';
 import Heading2 from '../components/typography/Heading2';
 import Button from '../components/input/Button';
 import Paragraph from '../components/typography/Paragraph';
+import styled from 'styled-components';
+import { css } from 'styled-components';
+import { color } from '../constants/color';
+
+const Nav = styled.div`
+    width: 220px;
+    position: absolute;
+    padding: 56px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @media (max-width: 480px) {
+        display: none;
+    }
+`
+const NavItem = styled.div`
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    > div {
+        flex: none;
+        margin-top: 6px;
+        width: 8px;
+        height: 4px;
+        border-bottom: 1.5px solid;
+        border-left: 1.5px solid;
+        transform: rotate(-45deg);
+    }
+    ${props => props.selected ?
+        css`
+            color: ${color.gray[9]};
+            > div{
+                border-color: ${props.done ? color.gray[9] : color.white};
+                
+            }
+        ` : props.error ?
+        css`
+            color: ${color.red[5]};
+            :hover{ color: ${color.red[7]}; }
+            > div{
+                border-color: ${props.done ? color.gray[5] : color.white};
+            }
+        ` :
+        css`
+            color: ${color.gray[5]};
+            :hover{ color: ${color.gray[8]}; }
+            > div{
+                border-color: ${props.done ? color.gray[5] : color.white};
+            }
+        `
+    }
+    cursor: pointer;
+`
 
 init(emailkey.USER_ID);
 
 export default function Feedback({ id }) {
+    const feedback = feedbacks.filter( i => i.id === id)[0].contents
     const navigate = useNavigate()
     const [data, setData] = useLocalStorage([id], {})
-    const [currentPage, setCurrentPage] = useLocalStorage('current-page', 0)
-    const [currentData, setCurrentData] = useState(feedbacks.filter( i => i.id === id)[0].contents[currentPage])
+    const [currentPage, setCurrentPage] = useLocalStorage('current-page', 1)
+    const [currentData, setCurrentData] = useState(feedback.filter( i => i.id === currentPage)[0])
     const [isLoading, setIsLoading] = useState(false)
     const [timer, setTimer] = useState(10)
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(true)
 
     useEffect(() => {
-        setCurrentData(feedbacks.filter( i => i.id === id)[0].contents[currentPage])
-    }, [currentPage, id])
+        setCurrentData(feedback.filter( i => i.id === currentPage)[0])
+    }, [currentPage, feedback])
     useEffect(() => {
-        setShowModal(Object.keys(data)[0] && true)
+        if(!Object.keys(data)[0]){
+            setShowModal(false)
+            setCurrentPage(1)
+        }
         const timerId = setInterval(() => {
             setTimer(prev => prev + 1)
         }, 1000)
@@ -69,7 +128,7 @@ export default function Feedback({ id }) {
             handleSubmit()
         }else if(currentData.type === 'end'){
             navigate('/')
-            setCurrentPage(0)
+            setCurrentPage(1)
         }else{
             setCurrentPage(prev => prev + 1)
         }
@@ -87,33 +146,50 @@ export default function Feedback({ id }) {
     const handleModalDelete = () => {
         window.localStorage.removeItem([id])
         setData({})
-        setCurrentPage(0)
+        setCurrentPage(1)
         setShowModal(false)
     }
     return (
-        <Container>
-            {showModal && 
-                <Modal>
-                    <div>
-                        <Heading2>작성 중인 내용이 있어요</Heading2>
-                        <Paragraph>이 전에 작성한 내용을 이어서 쓰시겠어요?</Paragraph>
-                    </div>
-                    <div>
-                        <Button onClick={() => setShowModal(false)}>이어쓰기</Button>
-                        <Button type='danger' onClick={handleModalDelete}>삭제하고 다시쓰기</Button>
-                    </div>
-                </Modal>
-            }
-            <Form
-                data={currentData}
-                defaultValue={data[currentData.name]}
-                callback={handleCallback} 
-                onClickNext={handleNextButton}
-                onClickPrevious={handlePreviousButton}
-                isLoading={isLoading}
-                autoSave={ timer === 3 ? 'saving' : (timer >= 4 && timer < 5) ? 'done' : 'none'}
-            />
-            <Progress percent={currentPage/(feedbacks.filter( i => i.id === id)[0].contents.length - 1)*100}/>
-        </Container>
+        <>
+            <Container>
+                {showModal && 
+                    <Modal>
+                        <div>
+                            <Heading2>작성 중인 내용이 있어요</Heading2>
+                            <Paragraph>이 전에 작성한 내용을 이어서 쓰시겠어요?</Paragraph>
+                        </div>
+                        <div>
+                            <Button onClick={() => setShowModal(false)}>이어쓰기</Button>
+                            <Button type='danger' onClick={handleModalDelete}>삭제하고 다시쓰기</Button>
+                        </div>
+                    </Modal>
+                }
+                <Form
+                    data={currentData}
+                    defaultValue={data[currentData.name]}
+                    callback={handleCallback} 
+                    onClickNext={handleNextButton}
+                    onClickPrevious={handlePreviousButton}
+                    isLoading={isLoading}
+                    autoSave={ timer === 3 ? 'saving' : (timer >= 4 && timer < 5) ? 'done' : 'none'}
+                    haveName={feedback.filter(i => i.name).length}
+                />
+                <Progress percent={feedback.filter( i => i.required && data[i.name]).length / feedback.filter( i => i.required ).length * 100}/>
+            </Container>
+            <Nav>
+                {feedback.filter( i => i.required && i.type !== 'email').map( item => (
+                    <NavItem
+                        key={item.name}
+                        selected={currentData.name === item.name}
+                        done={data[item.name]}
+                        error={currentData.type === 'email' && !data[item.name]}
+                        onClick={() => setCurrentPage(item.id)}
+                    >
+                        <div></div>
+                        {item.title}
+                    </NavItem>
+                ))}
+            </Nav>
+        </>
     )
 }

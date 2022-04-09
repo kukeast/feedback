@@ -24,11 +24,14 @@ const TitleWrapper = styled.div`
     gap: 8px;
 `
 
-export default function Form({ data, defaultValue, callback, onClickNext, onClickPrevious, isLoading, autoSave }) {
+export default function Form({ data, defaultValue, callback, onClickNext, onClickPrevious, isLoading, autoSave, haveName }) {
     const { type, title, name, placeholder, discription, required, options} = data
-    const [isPass, setIsPass] = useState(false)
+    const [isPass, setIsPass] = useState({})
     const handleCallback = (name, value, check) => {
-        setIsPass(check)
+        setIsPass({
+            ...isPass,
+            [name]: check
+        })
         callback(name, value)
         if(type === 'choice'){
             setTimeout(() => {
@@ -43,16 +46,19 @@ export default function Form({ data, defaultValue, callback, onClickNext, onClic
     }
     useEffect(() => {
         if(required){
-            if(defaultValue){
-                setIsPass(true)
-            }else{
-                setIsPass(false)
-            }
-        }else{
-            setIsPass(true)
+            setIsPass({
+                ...isPass,
+                [data.name]: defaultValue ? true : false
+            })
+        }else if(name){
+            setIsPass({
+                ...isPass,
+                [name]: true
+            })
         }
         // eslint-disable-next-line
     }, [title])
+
     return (
         <Wrapper>
             <TitleWrapper>
@@ -97,7 +103,7 @@ export default function Form({ data, defaultValue, callback, onClickNext, onClic
             }
             <Footer
                 type={type}
-                isPass={isPass}
+                isPass={type !== 'email' ? true : (type === 'email' && Object.keys(isPass).filter( i => isPass[i]).length === haveName) ? true : false}
                 onClickNext={onClickNext}
                 onClickPrevious={onClickPrevious}
                 isLoading={isLoading}
