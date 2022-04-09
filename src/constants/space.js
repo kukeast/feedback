@@ -1,4 +1,4 @@
 export const space = {
-    width: '460px',
+    width: '500px',
     wideWidth: '640px'
 }

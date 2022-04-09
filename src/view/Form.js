@@ -24,7 +24,7 @@ const TitleWrapper = styled.div`
     gap: 8px;
 `
 
-export default function Form({ data, defaultValue, callback, onClickNext, onClickPrevious, isLoading }) {
+export default function Form({ data, defaultValue, callback, onClickNext, onClickPrevious, isLoading, autoSave }) {
     const { type, title, name, placeholder, discription, required, options} = data
     const [isPass, setIsPass] = useState(false)
     const handleCallback = (name, value, check) => {
@@ -101,6 +101,7 @@ export default function Form({ data, defaultValue, callback, onClickNext, onClic
                 onClickNext={onClickNext}
                 onClickPrevious={onClickPrevious}
                 isLoading={isLoading}
+                autoSave={autoSave}
             />
         </Wrapper>
     )
