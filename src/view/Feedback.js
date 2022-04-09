@@ -19,7 +19,7 @@ init(emailkey.USER_ID);
 export default function Feedback({ id }) {
     const navigate = useNavigate()
     const [data, setData] = useLocalStorage([id], {})
-    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPage, setCurrentPage] = useLocalStorage('current-page', 0)
     const [currentData, setCurrentData] = useState(feedbacks.filter( i => i.id === id)[0].contents[currentPage])
     const [isLoading, setIsLoading] = useState(false)
     const [timer, setTimer] = useState(10)
@@ -37,7 +37,6 @@ export default function Feedback({ id }) {
         // eslint-disable-next-line
     }, [])
 
-    // console.log(data)
     const handleSubmit = () => {
         window.localStorage.removeItem([id])
         setIsLoading(true)
@@ -87,6 +86,7 @@ export default function Feedback({ id }) {
     const handleModalDelete = () => {
         window.localStorage.removeItem([id])
         setData({})
+        setCurrentPage(0)
         setShowModal(false)
     }
     return (
