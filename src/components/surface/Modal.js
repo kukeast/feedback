@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: #49505733;
+    background-color: #49505785;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,7 +24,7 @@ const ModalWrapper = styled.div`
     border-radius: 16px;
     box-shadow: 0px 16px 24px 0px #4950570D;
 
-    animation: slide 0.5s;
+    animation: slide 0.3s;
     display: flex;
     flex-direction: column;
     gap: 24px;
