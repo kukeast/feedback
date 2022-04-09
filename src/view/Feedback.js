@@ -38,7 +38,6 @@ export default function Feedback({ id }) {
     }, [])
 
     const handleSubmit = () => {
-        window.localStorage.removeItem([id])
         setIsLoading(true)
         const code = GenerateRandomCode.TextNumCode(3,3)
         axios.post(`https://sheet.best/api/sheets/4ba77550-e25c-431b-a213-46ce0788a961/tabs/${id}`, {
@@ -56,6 +55,7 @@ export default function Feedback({ id }) {
                 .then( res => {
                     setIsLoading(false)
                     setCurrentPage(prev => prev + 1)
+                    setData({})
                 }, err => {
                     console.log('emailjs FAILED...', err)
                 })
@@ -69,6 +69,7 @@ export default function Feedback({ id }) {
             handleSubmit()
         }else if(currentData.type === 'end'){
             navigate('/')
+            setCurrentPage(0)
         }else{
             setCurrentPage(prev => prev + 1)
         }
