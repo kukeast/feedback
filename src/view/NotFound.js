@@ -30,7 +30,6 @@ const Description = styled.p`
 export default function NotFound() {
     const navigate = useNavigate()
     const params = useParams()
-    console.log(params['*'])
     return (
         <Container>
             <Wrapper>
