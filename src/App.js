@@ -3,6 +3,7 @@ import { feedbacks } from "./constants/feedbacks";
 import Feedback from "./view/Feedback";
 import FeedbackView from "./view/FeedbackView";
 import Main from "./view/Main";
+import NotFound from "./view/NotFound";
 
 function App() {
     return (
@@ -10,8 +11,9 @@ function App() {
             <Routes>
                 <Route path={'/'} element={<Main/>}/>
                 <Route path={'/view'} element={<FeedbackView/>}/>
-                {feedbacks.map(route => (
-                    <Route key={route.path} path={route.path} element={<Feedback id={route.id}/>}/>
+                <Route path={'/*'} element={<NotFound/>}/>
+                {feedbacks.map(feedback => (
+                    <Route key={feedback.path} path={feedback.path} element={<Feedback id={feedback.id}/>}/>
                 ))}
             </Routes>
         </>
