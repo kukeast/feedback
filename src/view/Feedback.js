@@ -13,8 +13,7 @@ import Modal from '../components/surface/Modal';
 import Heading2 from '../components/typography/Heading2';
 import Button from '../components/input/Button';
 import Paragraph from '../components/typography/Paragraph';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { color } from '../constants/color';
 
 const Nav = styled.div`
@@ -74,7 +73,7 @@ init(emailkey.USER_ID);
 export default function Feedback({ id }) {
     const feedback = feedbacks.filter( i => i.id === id)[0].contents
     const navigate = useNavigate()
-    const [data, setData] = useLocalStorage([id], {})
+    const [data, setData] = useLocalStorage( id, {})
     const [currentPage, setCurrentPage] = useLocalStorage('current-page', 1)
     const [currentData, setCurrentData] = useState(feedback.filter( i => i.id === currentPage)[0])
     const [isLoading, setIsLoading] = useState(false)
@@ -85,6 +84,10 @@ export default function Feedback({ id }) {
         setCurrentData(feedback.filter( i => i.id === currentPage)[0])
     }, [currentPage, feedback])
     useEffect(() => {
+        const feedbackDate = feedbacks.filter( i => i.id === id)[0]
+        if(new Date(feedbackDate.startDate) > new Date() || new Date(feedbackDate.endDate) < new Date()){
+            navigate('/terminated')
+        }
         if(!Object.keys(data)[0]){
             setShowModal(false)
             setCurrentPage(1)
@@ -144,7 +147,7 @@ export default function Feedback({ id }) {
         setTimer(0)
     }
     const handleModalDelete = () => {
-        window.localStorage.removeItem([id])
+        window.localStorage.removeItem( id )
         setData({})
         setCurrentPage(1)
         setShowModal(false)
@@ -177,12 +180,12 @@ export default function Feedback({ id }) {
                 <Progress percent={feedback.filter( i => i.required && data[i.name]).length / feedback.filter( i => i.required ).length * 100}/>
             </Container>
             <Nav>
-                {feedback.filter( i => i.required && i.type !== 'email').map( item => (
+                {feedback.filter( i => i.type !== 'start' && i.type !== 'end' && i.type !== 'email').map( item => (
                     <NavItem
                         key={item.name}
                         selected={currentData.name === item.name}
                         done={data[item.name]}
-                        error={currentData.type === 'email' && !data[item.name]}
+                        error={item.required && currentData.type === 'email' && !data[item.name]}
                         onClick={() => setCurrentPage(item.id)}
                     >
                         <div></div>
