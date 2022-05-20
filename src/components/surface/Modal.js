@@ -40,6 +40,7 @@ const ModalWrapper = styled.div`
         display: flex;
         flex-direction: column;
         gap: 16px;
+        bottom: 0;
         > div {
             display: flex;
             flex-direction: column;
