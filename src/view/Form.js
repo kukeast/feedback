@@ -39,11 +39,6 @@ export default function Form({ data, defaultValue, callback, onClickNext, onClic
             }, 300)
         }
     }
-    const handleKeyDown = e => {
-        if(e.keyCode === 13){
-            onClickNext()
-        }
-    }
     useEffect(() => {
         if(required){
             setIsPass({
@@ -70,7 +65,6 @@ export default function Form({ data, defaultValue, callback, onClickNext, onClic
                     placeholder={placeholder}
                     name={name}
                     callback={handleCallback}
-                    keyDownEvent={handleKeyDown}
                     defaultValue={defaultValue}
                 />
             }
@@ -95,7 +89,6 @@ export default function Form({ data, defaultValue, callback, onClickNext, onClic
                     placeholder={placeholder}
                     name={name}
                     callback={handleCallback}
-                    keyDownEvent={handleKeyDown}
                     defaultValue={defaultValue}
                     type='email'
                     pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'

@@ -24,7 +24,7 @@ const Wrapper = styled.input`
     }
 `
 
-function TextField({ defaultValue = '', placeholder, name, type = 'text', pattern, callback, keyDownEvent }) {
+function TextField({ defaultValue = '', placeholder, name, type = 'text', pattern, callback }) {
     const [text, setText] = useState(defaultValue);
     const re = new RegExp(pattern)
     const inputElem = useRef();
@@ -36,9 +36,6 @@ function TextField({ defaultValue = '', placeholder, name, type = 'text', patter
             pattern ? re.test(inputElem.current.value) : inputElem.current.value === '' ? false : true
         )
     }
-    const handleKeyDown = e => {
-        keyDownEvent(e)
-    }
     useEffect(() => {
         setText(defaultValue)
     }, [defaultValue])
@@ -49,7 +46,6 @@ function TextField({ defaultValue = '', placeholder, name, type = 'text', patter
         <Wrapper
             type={type}
             onChange={handleChange}
-            onKeyDown={handleKeyDown}
             placeholder={placeholder}
             value={text}
             ref={inputElem}
