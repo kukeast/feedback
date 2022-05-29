@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { css } from 'styled-components'
-import { color } from '../constants/color'
+import { color } from '../../constants/color'
 
 const Wrapper = styled.div`
     display: flex;
