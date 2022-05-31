@@ -102,8 +102,8 @@ export const feedbacks = [
     {
         id: 2,
         title: '모요 3개월 피드백',
-        startDate: '2022.5.20',
-        endDate: '2022.5.30',
+        startDate: '2022.5.31',
+        endDate: '2022.6.8',
         path: '/moyo3month',
         contents: [
             {
@@ -120,8 +120,8 @@ export const feedbacks = [
                 type: 'short',
                 required: true,
                 name: 'name',
-                title: '이름을 알려주세요.',
-                discription: '익명이라고 적어주셔도 괜찮아요.',
+                title: '이름을 알려주세요',
+                discription: '익명이라고 적어주셔도 괜찮아요',
             },
             {
                 id: 3,
@@ -130,7 +130,7 @@ export const feedbacks = [
                 name: 'role',
                 title: '이동국에게 디자이너 또는 PO로서 기대하는 역할은 무엇인가요?',
                 discription: '고객 덕후분들은 둘 다 적어주세요 ^^',
-                placeholder: '자유롭게 적어주세요.',
+                placeholder: '자유롭게 적어주세요',
             },
             {
                 id: 4,
@@ -138,7 +138,7 @@ export const feedbacks = [
                 required: true,
                 name: 'good_value',
                 title: '핵심가치 중 제일 잘 하고 있는 한 가지는 무엇인가요?',
-                discription: '잘 하는걸 더 잘할 수 있게 도와주세요!',
+                discription: '잘 하는걸 더 잘할 수 있게 도와주세요',
                 options: text.coreValue,
             },
             {
@@ -146,8 +146,8 @@ export const feedbacks = [
                 type: 'long',
                 required: true,
                 name: 'good_reason',
-                title: '그렇게 생각한 이유를 알려주세요.',
-                placeholder: '한 가지 사례를 들어주시면 도움이 돼요.',
+                title: '그렇게 생각한 이유를 알려주세요',
+                placeholder: '한 가지 사례를 들어주시면 도움이 돼요',
             },
             {
                 id: 6,
@@ -155,7 +155,7 @@ export const feedbacks = [
                 required: true,
                 name: 'potential_value',
                 title: '반대로 제가 더 보여줬으면 하는 한 가지는 무엇인가요?',
-                discription: '부족한 역량에 대한 평가가 아닌 더 성장할 수 있는 잠재력이 있는 부분이 궁금해요!',
+                discription: '부족한 역량에 대한 평가가 아닌 더 성장할 수 있는 잠재력이 있는 부분이 궁금해요',
                 options: text.coreValue,
             },
             {
@@ -163,8 +163,8 @@ export const feedbacks = [
                 type: 'long',
                 required: true,
                 name: 'potential_reason',
-                title: '그렇게 생각한 이유를 알려주세요.',
-                placeholder: '한 가지 사례를 들어주시면 도움이 돼요.',
+                title: '그렇게 생각한 이유를 알려주세요',
+                placeholder: '한 가지 사례를 들어주시면 도움이 돼요',
             },
             {
                 id: 8,
@@ -178,15 +178,15 @@ export const feedbacks = [
                 type: 'email',
                 required: true,
                 name: 'email',
-                title: '모든 질문이 끝났어요.',
-                discription: '작성한 피드백을 조회할 수 있는 링크를 이메일로 보내드릴게요.',
+                title: '모든 질문이 끝났어요',
+                discription: '작성한 피드백을 조회할 수 있는 링크를 이메일로 보내드릴게요',
                 placeholder: '이메일',
             },
             {
                 id: 10,
                 type: 'end',
-                title: '감사합니다.',
-                discription: '빠른 시일 안에 1on1을 잡아 피드백에 대한 답변을 드릴게요.',
+                title: '감사합니다',
+                discription: '빠른 시일 안에 1on1을 잡아 피드백에 대한 답변을 드릴게요',
             },
         ]
     },
